@@ -11,7 +11,7 @@ data:
       : 50; // Default max cache size in MB
 
     // Convert cache max size from MB to bytes
-    const cacheMaxSizeBytes = cacheMaxSizeMb * 1024 * 1024;
+    const cacheMaxSizeBytes = cacheMaxSize * 1024 * 1024;
 
     const server = http.createServer((req, res) => {
       if (data.length < cacheMaxSizeBytes) {
