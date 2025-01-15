@@ -18,7 +18,7 @@ data:
     const server = http.createServer((req, res) => {
       if (data.length < cacheMaxSizeBytes) {
         // Simulate adding 1MB of data to the cache
-        const randomData = crypto.randomBytes(100 * 1024); // Generate 100k of random data
+        const randomData = crypto.randomBytes(10 * 1024); // Generate 10k of random data
         data.push(...randomData); // Append the random bytes to the data array;
         console.log(`Cache size: ${(data.length / (1024*1024)).toFixed(2)} MB of maximum ${cacheMaxSize} MB`);
       }
