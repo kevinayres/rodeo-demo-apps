@@ -2,6 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: cool-server-load-test
+  namespace: observe-a-demo
 spec:
   template:
     metadata:

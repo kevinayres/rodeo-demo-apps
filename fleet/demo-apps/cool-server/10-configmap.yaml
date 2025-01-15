@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: cool-server-code
+  namespace: observe-a-demo
 data:
   cool-server.js: |
     const http = require('http');
@@ -41,7 +42,7 @@ data:
     };
 
     export default function () {
-      let res = http.get('http://cool-server.svc.cluster.local:8080');
+      let res = http.get('http://cool-server.observe-a-demo.svc.cluster.local:8080');
       check(res, { 'status was 200': (r) => r.status === 200 });
       sleep(1);
     }
