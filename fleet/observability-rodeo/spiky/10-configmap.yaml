@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cool-server-code
-  namespace: observe-a-demo
+  name: spiky-code
+  namespace: hands-on-labs
 data:
-  cool-server.js: |
+  spiky-server.js: |
     const http = require('http');
     const crypto = require('crypto'); // For generating random data
     const data = [];
@@ -44,7 +44,7 @@ data:
     };
 
     export default function () {
-      let res = http.get('http://cool-server.observe-a-demo.svc.cluster.local:8080');
+      let res = http.get('http://spiky.hands-on-labs.svc.cluster.local:8080');
       check(res, { 'status was 200': (r) => r.status === 200 });
       sleep(1);
     }

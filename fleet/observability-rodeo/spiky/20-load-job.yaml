@@ -1,12 +1,12 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: cool-server-load-test
-  namespace: observe-a-demo
+  name: spiky-load-test
+  namespace: hands-on-labs
 spec:
   template:
     metadata:
-      name: cool-server-load-test
+      name: spiky-load-test
     spec:
       containers:
       - name: k6
@@ -19,4 +19,4 @@ spec:
       volumes:
       - name: k6-script
         configMap:
-          name: cool-server-code
+          name: spiky-code

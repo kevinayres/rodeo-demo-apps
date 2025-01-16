@@ -8,7 +8,7 @@ data:
     const maintenanceMode = process.env.MAINTENANCE_MODE === 'true';
     setTimeout(() => {
       if (maintenanceMode) {
-        console.log('Maintenance mode enabled. Exiting...');
+        console.log('[ERROR]: Maintenance mode enabled. Exiting...');
         process.exit(0);
       } else {
         console.log('Application started. Running in normal mode...');
@@ -18,4 +18,4 @@ data:
           console.log('Application is processing tasks...');
         }, 5000);
       }
-    }, 10000); // 10-second delay
+    }, 5000); // 10-second delay

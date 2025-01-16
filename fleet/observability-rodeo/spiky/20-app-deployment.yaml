@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cool-server
-  namespace: observe-a-demo
+  name: spiky
+  namespace: hands-on-labs
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cool-server
+      app: spiky
   template:
     metadata:
       labels:
-        app: cool-server
+        app: spiky
     spec:
       containers:
-      - name: cool-server
+      - name: spiky
         image: node:18
-        command: ["node", "/app/cool-server.js"]
+        command: ["node", "/app/spiky-server.js"]
         env:
         - name: CACHE_MAX_SIZE
           value: "100" # Max cache size in MB (adjustable)
@@ -35,5 +35,5 @@ spec:
       volumes:
       - name: app-code
         configMap:
-          name: cool-server-code
+          name: spiky-code
 
