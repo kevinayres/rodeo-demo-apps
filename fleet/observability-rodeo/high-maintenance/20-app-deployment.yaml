@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: high-maintenance
+  namespace: hands-on-labs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: high-maintenance
+  template:
+    metadata:
+      labels:
+        app: high-maintenance
+    spec:
+      containers:
+      - name: high-maintenance
+        image: node:18
+        command: ["node", "/app/high-maintenance.js"]
+        env:
+        - name: MAINTENANCE_MODE
+          value: "true"
+        resources:
+          requests:
+            memory: "64Mi"   # Requests 64Mi of memory
+            cpu: "100m"      # Requests 100 millicores of CPU
+          limits:
+            memory: "128Mi"  # Limits memory usage to 128Mi
+            cpu: "200m"      # Limits CPU usage to 200 millicores
+        volumeMounts:
+        - name: app-code
+          mountPath: /app
+      volumes:
+      - name: app-code
+        configMap:
+          name: high-maintenance-config
