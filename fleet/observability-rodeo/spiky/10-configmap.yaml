@@ -44,7 +44,7 @@ data:
     };
 
     export default function () {
-      let res = http.get('http://spiky.hands-on-labs.svc.cluster.local:8080');
+      let res = http.get('http://spiky.rodeo-lab-3.svc.cluster.local:8080');
       check(res, { 'status was 200': (r) => r.status === 200 });
       sleep(1);
     }
