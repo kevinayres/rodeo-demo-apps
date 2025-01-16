@@ -33,4 +33,4 @@ spec:
       volumes:
       - name: app-code
         configMap:
-          name: high-maintenance-config
+          name: tardis-config

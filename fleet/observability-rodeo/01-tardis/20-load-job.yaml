@@ -21,4 +21,4 @@ spec:
       volumes:
       - name: k6-script
         configMap:
-          name: spiky-code
+          name: tardis-code
