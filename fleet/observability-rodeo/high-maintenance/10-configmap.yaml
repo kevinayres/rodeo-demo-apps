@@ -6,15 +6,16 @@ metadata:
 data:
   high-maintenance.js: |
     const maintenanceMode = process.env.MAINTENANCE_MODE === 'true';
+    setTimeout(() => {
+      if (maintenanceMode) {
+        console.log('Maintenance mode enabled. Exiting...');
+        process.exit(0);
+      } else {
+        console.log('Application started. Running in normal mode...');
 
-    if (maintenanceMode) {
-      console.log('Maintenance mode enabled. Exiting...');
-      process.exit(0);
-    } else {
-      console.log('Application started. Running in normal mode...');
-
-      // Simulate some work
-      setInterval(() => {
-        console.log('Application is processing tasks...');
-      }, 5000);
-    }
+        // Simulate application doing some periodic work
+        setInterval(() => {
+          console.log('Application is processing tasks...');
+        }, 5000);
+      }
+    }, 10000); // 10-second delay
