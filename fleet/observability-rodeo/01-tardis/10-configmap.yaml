@@ -13,7 +13,7 @@ data:
     // Server logic
     const server = http.createServer((req, res) => {
       if (maintenanceMode) {
-        console.log('Tardis is offline, Maintenance mode is active. Returning 503 Service Unavailable.');
+        console.log('[ERROR] Tardis is offline, Maintenance mode is active. Returning 503 Service Unavailable.');
         res.writeHead(503, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({
           message: 'The server is currently in maintenance mode. Please try again later.',
