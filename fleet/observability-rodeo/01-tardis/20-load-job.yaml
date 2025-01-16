@@ -1,12 +1,14 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: spiky-load-test
-  namespace: rodeo-lab-3
+  name: companion-probe
+  namespace: hands-on-labs-1
 spec:
   template:
     metadata:
-      name: spiky-load-test
+      name: companion-probe
+      labels:
+        app: companion-probe
     spec:
       containers:
       - name: k6

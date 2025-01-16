@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: spiky-code
-  namespace: hands-on-labs
+  namespace: rodeo-lab-3
 data:
   spiky-server.js: |
     const http = require('http');

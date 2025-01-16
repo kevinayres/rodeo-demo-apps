@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: spiky
-  namespace: hands-on-labs
+  namespace: rodeo-lab-3
 spec:
   replicas: 1
   selector:

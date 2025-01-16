@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: high-maintenance
-  namespace: hands-on-labs
+  name: tardis
+  namespace: rodeo-lab-1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: high-maintenance
+      app: tardis
   template:
     metadata:
       labels:
-        app: high-maintenance
+        app: tardis
     spec:
       containers:
-      - name: high-maintenance
+      - name: tardis
         image: node:18
-        command: ["node", "/app/high-maintenance.js"]
+        command: ["node", "/app/tardis.js"]
         env:
         - name: MAINTENANCE_MODE
           value: "true"
