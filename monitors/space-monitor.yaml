@@ -2,8 +2,8 @@ nodes:
   - _type: MonitorFunction
     id: -2
     description: |-
-      Mysterious Space Monitor
-    name: Space Monitor
+      Mysterious Space Monitor Function
+    name: Space Monitor Function
     parameters: []
     identifier: urn:system:default:monitor-function:space-monitor
     script:
@@ -41,7 +41,7 @@ nodes:
       And next you might want to take a look at the configuration. Maybe the Asteroid Detector is configured to detect asteroids on the wrong planet.
 
       Good luck solving this issue while all those sirens are blaring!
+    status: ENABLED
     tags:
       - configmaps
       - pods
-timestamp: 2022-02-14T13:16:27.369269Z[GMT]
