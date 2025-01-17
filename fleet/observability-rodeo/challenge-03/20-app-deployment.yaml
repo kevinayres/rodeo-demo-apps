@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: asteroid-detector
+  namespace: rodeo-lab-3
 spec:
   replicas: 1
   selector:
@@ -33,10 +34,10 @@ spec:
           limits:
             cpu: "200m"
             memory: "128Mi"
-        volumes:
-        - name: app-code
-          configMap:
-            name: asteroid-detector-app-code
-        - name: config-volume
-          configMap:
-            name: asteroid-detector-config
+      volumes:
+      - name: app-code
+        configMap:
+          name: asteroid-detector-app-code
+      - name: config-volume
+        configMap:
+          name: asteroid-detector-config
