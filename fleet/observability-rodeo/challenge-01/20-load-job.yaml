@@ -1,14 +1,14 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: companion-probe
+  name: gravitational-accelerator-probe
   namespace: rodeo-lab-1
 spec:
   template:
     metadata:
-      name: companion-probe
+      name: gravitational-accelerator-probe
       labels:
-        app: companion-probe
+        app: gravitational-accelerator-probe
     spec:
       containers:
       - name: k6
@@ -21,4 +21,4 @@ spec:
       volumes:
       - name: k6-script
         configMap:
-          name: tardis-code
+          name: gravitational-accelerator-code

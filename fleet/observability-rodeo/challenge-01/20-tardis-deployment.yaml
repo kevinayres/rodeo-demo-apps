@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tardis
+  name: gravitational-accelerator
   namespace: rodeo-lab-1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tardis
+      app: gravitational-accelerator
   template:
     metadata:
       labels:
-        app: tardis
+        app: gravitational-accelerator
     spec:
       containers:
-      - name: tardis
+      - name: gravitational-accelerator
         image: node:18
-        command: ["node", "/app/tardis.js"]
+        command: ["node", "/app/gravitational-accelerator.js"]
         env:
         - name: MAINTENANCE_MODE
           value: "false"
@@ -33,4 +33,4 @@ spec:
       volumes:
       - name: app-code
         configMap:
-          name: tardis-code
+          name: gravitational-accelerator-code
