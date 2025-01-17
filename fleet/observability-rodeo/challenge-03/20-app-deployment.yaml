@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: asteroid-detector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asteroid-detector
+  template:
+    metadata:
+      labels:
+        app: asteroid-detector
+    spec:
+      containers:
+      - name: asteroid-detector
+        image: node:18
+        command: ["node", "/app/asteroid-detector.js"]
+        volumeMounts:
+        - name: app-code
+          mountPath: /app
+          readOnly: true
+        - name: config-volume
+          mountPath: /config
+          readOnly: true
+        env:
+        - name: NODE_ENV
+          value: "production"
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "64Mi"
+          limits:
+            cpu: "200m"
+            memory: "128Mi"
+        volumes:
+        - name: app-code
+          configMap:
+            name: asteroid-detector-app-code
+        - name: config-volume
+          configMap:
+            name: asteroid-detector-config

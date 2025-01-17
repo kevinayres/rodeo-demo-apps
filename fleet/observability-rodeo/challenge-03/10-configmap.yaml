@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: asteroid-detector-app-code
+data:
+  asteroid-detector.js: |
+    const fs = require('fs');
+    const path = '/config/scanning-location';
+
+    console.log('Asteroid Detector starting up...');
+
+    // Periodically read the scanning location from the ConfigMap
+    setInterval(() => {
+      try {
+        const location = fs.readFileSync(path, 'utf8').trim();
+        console.log(`Scanning for asteroids in location: ${location}`);
+      } catch (err) {
+        console.error('Error reading configuration:', err.message);
+      }
+    }, 10000); // Check every 5 seconds
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: asteroid-detector-config
+data:
+  scanning-location: "Alpha Centauri"
