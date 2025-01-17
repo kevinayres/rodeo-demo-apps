@@ -19,7 +19,7 @@ spec:
         command: ["node", "/app/tardis.js"]
         env:
         - name: MAINTENANCE_MODE
-          value: "false"
+          value: "true"
         resources:
           requests:
             memory: "64Mi"   # Requests 64Mi of memory
