@@ -15,6 +15,9 @@ data:
       try {
         const location = fs.readFileSync(path, 'utf8').trim();
         console.log(`Scanning for asteroids in location: ${location}`);
+        if (location === 'Alpha Centauri') {
+          console.log('[ERROR] Asteroid swarm detected! 🌠');
+        }
       } catch (err) {
         console.error('Error reading configuration:', err.message);
       }
