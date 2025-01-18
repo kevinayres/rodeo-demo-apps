@@ -27,6 +27,10 @@ spec:
         env:
         - name: NODE_ENV
           value: "production"
+        - name: SCANNING_LOCATION
+          configMapKeyRef:
+            name: asteroid-detector-config
+            key: scanning_location
         resources:
           requests:
             cpu: "100m"
