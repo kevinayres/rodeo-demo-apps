@@ -10,17 +10,18 @@ nodes:
       _type: ScriptFunctionBody
       scriptBody: |-
         TopologyStream.query('label = "stackpack:kubernetes" and type = "pod" and label = "app:asteroid-detector"')
-        .map { pod -> [id: pod.id, identifier: pod.identifiers[0], creationTimestamp: pod.properties.creationTimestamp] }
+        .map { pod -> [id: pod.id, identifier: pod.identifiers[0], creationTimestamp: pod.properties.creationTimestamp, podLUT: pod.lastUpdateTimestamp] }
         .collectStream(1000, false).thenCollect { pod ->
             q = "(withNeighborsOf(direction = 'down', components = (id = '${pod.id}'), levels = '1')) and type = 'configmap'";
+            delta = pod.lastUpdateTimestamp - Time.epochMs(pod.creationTimestamp) + 2000;
             Topology.query(q).components().thenCollect { configMap ->
-                [ 'identifier': pod.identifier, 'podCreation': Time.epochMs(pod.creationTimestamp), 'configmapLUT': configMap.lastUpdateTimestamp, 'configmapName': configMap.name]
+                [ 'identifier': pod.identifier, 'podCreation': Time.epochMs(pod.creationTimestamp), 'delta': delta, 'configmapLUT': configMap.lastUpdateTimestamp, 'configmapName': configMap.name]
             }
         }.thenStream { response ->
             response.flatten()
         }
         .then { response ->
-            def health = (response.podCreation < (response.configmapLUT + 10000)) ? "DEVIATING" : "CLEAR";
+            def health = ((response.podCreation + delta) < response.configmapLUT) ? "CRITICAL" : "CLEAR";
             def healthId = response.identifier + "_" + response.configmapName
             return [ _type: "MonitorHealthState", id: healthId, state: health, message: "Anomaly detected, please investigate...", topologyIdentifier: response.identifier  ]
         }
