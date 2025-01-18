@@ -5,7 +5,7 @@ metadata:
   namespace: rodeo-lab-3
 data:
   asteroid-detector.js: |
-    const location = process.env.LOCATION;
+    const location = process.env.SCANNING_LOCATION;
 
     console.log('Asteroid Detector starting up...');
 
