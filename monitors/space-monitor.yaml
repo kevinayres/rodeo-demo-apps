@@ -22,8 +22,11 @@ nodes:
         .then { response ->
             def delta = response.podLUT - response.podCreation + 2000;
             def health = ((response.podCreation + delta) < response.configmapLUT) ? "CRITICAL" : "CLEAR";
-            def healthId = response.identifier + "_" + response.configmapName
-            return [ _type: "MonitorHealthState", id: healthId, state: health, message: "Anomaly detected, please investigate...", topologyIdentifier: response.identifier  ]
+            def healthId = response.identifier + "_" + response.configmapName;
+            if (health == "CLEAR") {
+                return [ _type: "MonitorHealthState", id: healthId, state: health, message: "No anomalies detected", topologyIdentifier: response.identifier  ];
+            }
+            return [ _type: "MonitorHealthState", id: healthId, state: health, message: "Anomaly detected, please investigate...", topologyIdentifier: response.identifier  ];
         }
   - _type: Monitor
     name: Space Monitor
