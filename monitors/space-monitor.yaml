@@ -20,7 +20,7 @@ nodes:
             response.flatten()
         }
         .then { response ->
-            def health = (response.podCreation < response.configmapLUT) ? "CRITICAL" : "CLEAR";
+            def health = (response.podCreation + 7000 < response.configmapLUT) ? "CRITICAL" : "CLEAR";
             def healthId = response.identifier + "_" + response.configmapName;
             if (health == "CLEAR") {
                 return [ _type: "MonitorHealthState", id: healthId, state: health, message: "No anomalies detected", topologyIdentifier: response.identifier  ];
