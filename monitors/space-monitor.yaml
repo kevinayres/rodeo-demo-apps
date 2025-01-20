@@ -14,7 +14,7 @@ nodes:
         .collectStream(1000, false).thenCollect { pod ->
             q = "(withNeighborsOf(direction = 'down', components = (id = '${pod.id}'), levels = '1')) and type = 'configmap'";
             Topology.query(q).components().thenCollect { configMap ->
-                [ 'identifier': pod.identifier, 'podCreation': Time.epochMs(pod.creationTimestamp), 'configmapLUT': configMap.lastUpdateTimestamp, 'configmapName': configMap.name]
+                [ 'identifier': pod.identifier, 'podCreation': Time.epochMs(pod.creationTimestamp), 'podLUT': pod.podLUT, 'configmapLUT': configMap.lastUpdateTimestamp, 'configmapName': configMap.name]
             }
         }.thenStream { response ->
             response.flatten()
@@ -33,7 +33,7 @@ nodes:
     identifier: urn:system:default:monitor:space-monitor
     function: -2
     arguments: []
-    intervalSeconds: 60
+    intervalSeconds: 30
     remediationHint: |-
       WARNING: Asteroid Rain Detected!
 
