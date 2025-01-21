@@ -14,7 +14,7 @@ nodes:
         .collectStream(1000, false).thenCollect { pod ->
             q = "(withNeighborsOf(direction = 'down', components = (id = '${pod.id}'), levels = '1')) and type = 'configmap' and label = 'challenge:asteroid-detector'";
             Topology.query(q).components().thenCollect { configMap ->
-                [ 'identifier': pod.identifier, 'podCreation': Time.epochMs(pod.creationTimestamp), 'podLUT': pod.podLUT, 'configmapLUT': configMap.synced[0].lastUpdateTimestamp, 'configmapName': configMap.name]
+                [ 'identifier': pod.identifier, 'podCreation': Time.epochMs(pod.creationTimestamp), 'podLUT': pod.podLUT, 'configmapLUT': configMap.lastUpdateTimestamp, 'configmapName': configMap.name]
             }
         }.thenStream { response ->
             response.flatten()
@@ -34,7 +34,7 @@ nodes:
     arguments: []
     intervalSeconds: 30
     remediationHint: |-
-      WARNING: Asteroid Rain Detected!
+      ## WARNING: Asteroid Rain Detected!
 
       However, when you look out of the window you see no asteroids at all. You start to wonder whether the Asteroid Detector is actually monitoring the correct planet.
 
