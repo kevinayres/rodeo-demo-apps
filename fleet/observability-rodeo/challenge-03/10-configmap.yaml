@@ -21,5 +21,7 @@ kind: ConfigMap
 metadata:
   name: asteroid-detector-config
   namespace: rodeo-lab-3
+  labels:
+    challenge: asteroid-detector
 data:
   scanning_location: "Alpha Centauri"

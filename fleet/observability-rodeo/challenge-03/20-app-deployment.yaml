@@ -21,9 +21,6 @@ spec:
         - name: app-code
           mountPath: /app
           readOnly: true
-        - name: config-volume
-          mountPath: /config
-          readOnly: true
         env:
         - name: NODE_ENV
           value: "production"
