@@ -8,8 +8,8 @@ data:
     import { sleep } from 'k6';
 
     export let options = {
-      vus: {{ .Values.k6.vus }},
-      duration: '{{ .Values.k6.duration }}',
+      vus: {{ .Values.k6.loadTest.vus }},
+      duration: '{{ .Values.k6.loadTest.duration }}',
     };
 
     export default function () {
