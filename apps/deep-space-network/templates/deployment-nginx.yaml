@@ -4,6 +4,7 @@ metadata:
   name: {{ .Release.Name }}
   labels:
     app: {{ .Release.Name }}
+    app.kubernetes.io/name: {{ .Chart.Name }}
 spec:
   replicas: {{ .Values.nginx.replicas }}
   selector:
@@ -13,6 +14,7 @@ spec:
     metadata:
       labels:
         app: {{ .Release.Name }}
+        app.kubernetes.io/name: {{ .Chart.Name }}
     spec:
       containers:
       - name: nginx

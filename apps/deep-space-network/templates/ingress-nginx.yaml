@@ -4,6 +4,8 @@ metadata:
   name: {{ .Release.Name }}-ingress
   annotations:
     {{ .Values.nginx.ingress.annotations | toYaml | nindent 4 }}
+  labels:
+    app.kubernetes.io/name: {{ .Chart.Name }}
 spec:
   rules:
   - host: {{ .Values.nginx.ingress.host }}
