@@ -1,23 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-nginx
+  name: {{ .Release.Name }}
   labels:
-    app: {{ .Release.Name }}-nginx
+    app: {{ .Release.Name }}
+    app.kubernetes.io/name: {{ .Chart.Name }}
 spec:
   replicas: {{ .Values.nginx.replicas }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-nginx
+      app: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-nginx
+        app: {{ .Release.Name }}
+        app.kubernetes.io/name: {{ .Chart.Name }}
     spec:
       containers:
       - name: nginx
         image: {{ .Values.nginx.image }}
-
         ports:
         - containerPort: 80
         volumeMounts:
@@ -26,4 +27,4 @@ spec:
       volumes:
       - name: static-content
         configMap:
-          name: {{ .Release.Name }}-nginx-config
+          name: {{ .Release.Name }}-config

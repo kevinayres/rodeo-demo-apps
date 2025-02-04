@@ -1,7 +1,7 @@
 nginx:
   # Pull the latest nginx image from Docker Hub
   image: nginx:latest
-  replicas: 2
+  replicas: 1
   ingress:
     host: "space-station.local"
 

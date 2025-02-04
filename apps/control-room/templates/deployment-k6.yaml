@@ -2,6 +2,8 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: {{ .Release.Name }}-k6-load
+  labels:
+    app.kubernetes.io/name: {{ .Chart.Name }}
 spec:
   template:
     metadata:
