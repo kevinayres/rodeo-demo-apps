@@ -18,7 +18,9 @@ spec:
     spec:
       {{- with .Values.global.imagePullSecrets }}
       imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
+        {{- {{- range $ps := . }}
+          - name: {{ $ps }}
+        {{- end }}
       {{- end }}
       containers:
       - name: nginx
