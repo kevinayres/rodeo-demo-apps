@@ -1,0 +1,15 @@
+global:
+  imagePullSecrets: [appco]
+nginx:
+  # Pull the latest nginx image from AppCo
+  image: dp.apps.rancher.io/containers/nginx:1.28.0
+  replicas: 1
+  ingress:
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    host: "deep-space-network.local"
+
+k6:
+  loadTest:
+    duration: "60m"
+    vus: 10
