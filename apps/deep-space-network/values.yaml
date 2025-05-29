@@ -1,8 +1,8 @@
 global:
-  imagePullSecrets: []
+  imagePullSecrets: [suse-application-collection-upstream]
 nginx:
-  # Pull the latest nginx image from Docker Hub
-  image: nginx:latest
+  # Pull the latest nginx image from AppCo
+  image: dp.apps.rancher.io/containers/nginx:1.28.0
   replicas: 1
   ingress:
     annotations:
